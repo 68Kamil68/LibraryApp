@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./compose/django/Dockerfile
+    image: library
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app
+    env_file:
+      - ./.envs/.env
+    ports:
+      - "8000:8000"
+    command: /start
+    networks:
+      - backend
+
+  postgres:
+    image: postgres:13.0
+    restart: always
+    hostname: library-db
+    container_name: library-db
+    volumes:
+      - ./pg-init-scripts:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_MULTIPLE_DATABASES=postgres
+    networks:
+      - backend
+
+networks:
+  backend:
+
+volumes:
+  local_postgres_data: {}
