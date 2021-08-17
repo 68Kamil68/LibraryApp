@@ -1,2 +1,2 @@
-# django-boilerplate
+# Simple Library app
 
