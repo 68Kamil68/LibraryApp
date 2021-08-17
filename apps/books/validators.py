@@ -1,7 +1,7 @@
-from stdnum import isbn
-
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
+
+from stdnum import isbn
 
 
 def isbn_validator(isbn_number: str) -> bool:

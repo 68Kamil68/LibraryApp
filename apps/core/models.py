@@ -1,11 +1,10 @@
 import os
 
-from django.db import models
 from django.conf import settings
-
-from model_utils.models import SoftDeletableModel, TimeStampedModel
+from django.db import models
 
 from apps.authors.models import Author
+from model_utils.models import SoftDeletableModel, TimeStampedModel
 
 
 class BaseModel(SoftDeletableModel, TimeStampedModel):
@@ -14,7 +13,9 @@ class BaseModel(SoftDeletableModel, TimeStampedModel):
 
 
 class Publication(BaseModel):
-    author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True, related_name="%(class)ss",)
+    author = models.ForeignKey(
+        Author, on_delete=models.SET_NULL, null=True, related_name="%(class)ss",
+    )
     language = models.CharField(max_length=50, default="Polish")
     publication_date = models.DateField(null=True)
     title = models.CharField(max_length=200)
