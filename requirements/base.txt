@@ -8,3 +8,4 @@ werkzeug==2.0.1
 python-stdnum==1.16
 pycountry==20.7.3
 factory-boy==3.2.0
+pytest-django==4.4.0

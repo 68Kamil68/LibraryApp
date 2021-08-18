@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "apps.users",
     "apps.core.base",
     "apps.core.publications",
     "apps.authors",
@@ -121,3 +122,6 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 MEDIA_ROOT = "/storage/"
+
+
+AUTH_USER_MODEL = "users.User"
