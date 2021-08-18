@@ -20,7 +20,9 @@ class WithThumbnailMixin(models.Model):
     THUMBNAILS_STORAGE_PATH = "thumbnails"
 
     thumbnail_url = models.URLField(null=True, blank=True)
-    thumbnail = models.FileField(upload_to=THUMBNAILS_STORAGE_PATH, null=True)
+    thumbnail = models.FileField(
+        upload_to=THUMBNAILS_STORAGE_PATH, null=True, blank=True
+    )
 
     class Meta:
         abstract = True
