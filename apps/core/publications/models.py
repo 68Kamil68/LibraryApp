@@ -1,16 +1,19 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from apps.authors.models import Author
 from apps.core.base.models import BaseModel
 
 
 class Publication(BaseModel):
-    author = models.ForeignKey(
-        Author, on_delete=models.SET_NULL, null=True, related_name="%(class)ss",
+    authors = models.ManyToManyField(
+        Author, related_name="%(class)ss", verbose_name=_("authors")
     )
-    language = models.CharField(max_length=50, default="Polish")
-    publication_date = models.DateField(null=True)
-    title = models.CharField(max_length=200)
+    language = models.CharField(
+        max_length=50, default="English", verbose_name=_("language")
+    )
+    publication_date = models.DateField(null=True, verbose_name=_("publication date"))
+    title = models.CharField(max_length=200, verbose_name=_("title"))
 
     class Meta:
         abstract = True
