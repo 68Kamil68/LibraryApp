@@ -1,15 +1,7 @@
-import os
-
-from django.conf import settings
 from django.db import models
 
 from apps.authors.models import Author
-from model_utils.models import SoftDeletableModel, TimeStampedModel
-
-
-class BaseModel(SoftDeletableModel, TimeStampedModel):
-    class Meta:
-        abstract = True
+from apps.core.base.models import BaseModel
 
 
 class Publication(BaseModel):
@@ -24,8 +16,11 @@ class Publication(BaseModel):
         abstract = True
 
 
-class WithThumbnail(models.Model):
-    THUMBNAILS_STORAGE_PATH = os.path.join(settings.STORAGE_PATH, "thumbnails")
+class WithThumbnailMixin(models.Model):
+    THUMBNAILS_STORAGE_PATH = "thumbnails"
 
     thumbnail_url = models.URLField(null=True, blank=True)
     thumbnail = models.FileField(upload_to=THUMBNAILS_STORAGE_PATH, null=True)
+
+    class Meta:
+        abstract = True

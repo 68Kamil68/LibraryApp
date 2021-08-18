@@ -1,6 +1,6 @@
 from django.db import models
 
-from apps.core.models import BaseModel
+from apps.core.base.models import BaseModel
 
 
 class Author(BaseModel):

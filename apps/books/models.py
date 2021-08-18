@@ -1,10 +1,10 @@
 from django.db import models
 
-from apps.core.models import Publication, WithThumbnail
+from apps.core.publications.models import Publication, WithThumbnailMixin
 
 from .validators import isbn_validator
 
 
-class Book(Publication, WithThumbnail):
+class Book(Publication, WithThumbnailMixin):
     isbn = models.CharField(max_length=20, validators=[isbn_validator])
-    number_of_pages = models.IntegerField()
+    amount_of_pages = models.IntegerField()

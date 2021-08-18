@@ -17,6 +17,7 @@ services:
     command: /start
     networks:
       - backend
+    restart: always
 
   postgres:
     image: postgres:13.0
